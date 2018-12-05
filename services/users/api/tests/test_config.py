@@ -1,6 +1,4 @@
-# services/users/api/tests/test_config.py
 import os
-import unittest
 
 from flask import current_app
 from flask_testing import TestCase
@@ -8,44 +6,39 @@ from flask_testing import TestCase
 from api import app
 
 
-class TestDevelopmentConfig(TestCase):
+class TestDevelopmentConfig(object):
     def create_app(self):
         app.config.from_object('api.config.DevelopmentConfig')
         return app
 
     def test_app_is_development(self):
-        self.assertTrue(app.config['SECRET_KEY'] == 'my_precious')
-        self.assertFalse(current_app is None)
-        self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] ==
+        self.create_app()
+        assert app.config['SECRET_KEY'] == 'my_precious'
+        assert not (current_app is None)
+        assert app.config['SQLALCHEMY_DATABASE_URI'] == \
             os.environ.get('DATABASE_URL')
-        )
 
 
-class TestTestingConfig(TestCase):
+class TestTestingConfig(object):
     def create_app(self):
         app.config.from_object('api.config.TestingConfig')
         return app
 
     def test_app_is_testing(self):
-        self.assertTrue(app.config['SECRET_KEY'] == 'my_precious')
-        self.assertTrue(app.config['TESTING'])
-        self.assertFalse(app.config['PRESERVE_CONTEXT_ON_EXCEPTION'])
-        self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] ==
+        self.create_app()
+        assert app.config['SECRET_KEY'] == 'my_precious'
+        assert app.config['TESTING'] is not None
+        assert not app.config['PRESERVE_CONTEXT_ON_EXCEPTION']
+        assert app.config['SQLALCHEMY_DATABASE_URI'] == \
             os.environ.get('DATABASE_TEST_URL')
-        )
 
 
-class TestProductionConfig(TestCase):
+class TestProductionConfig(object):
     def create_app(self):
         app.config.from_object('api.config.ProductionConfig')
         return app
 
     def test_app_is_production(self):
-        self.assertTrue(app.config['SECRET_KEY'] == 'my_precious')
-        self.assertFalse(app.config['TESTING'])
-
-
-if __name__ == '__main__':
-    unittest.main()
+        self.create_app()
+        assert app.config['SECRET_KEY'] == 'my_precious'
+        assert not app.config['TESTING']
