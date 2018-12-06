@@ -4,9 +4,11 @@ from flask.cli import FlaskGroup
 import pytest
 import unittest
 
-from api import app, db
+from api import create_app, db
+from api.models import User
 
-cli = FlaskGroup(app)
+app = create_app()
+cli = FlaskGroup(create_app=create_app)
 
 
 @cli.command()
@@ -19,7 +21,7 @@ def recreate_db():
 @cli.command()
 def test():
     """Runs the pytest tests"""
-    return pytest.main(['api/pytests'])
+    return pytest.main(['api/tests'])
 
 
 if __name__ == '__main__':

@@ -1,10 +1,11 @@
 import pytest
 
-from api import app, db
+from api import create_app, db
 
 
 @pytest.fixture()
 def client_fixture():
+    app = create_app()
     app.config.from_object('api.config.TestingConfig')
     return app.test_client()
 

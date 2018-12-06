@@ -3,16 +3,14 @@ import os
 from flask import current_app
 from flask_testing import TestCase
 
-from api import app
+from api import create_app
 
 
 class TestDevelopmentConfig(object):
-    def create_app(self):
-        app.config.from_object('api.config.DevelopmentConfig')
-        return app
 
     def test_app_is_development(self):
-        self.create_app()
+        app = create_app()
+        app.config.from_object('api.config.DevelopmentConfig')
         assert app.config['SECRET_KEY'] == 'my_precious'
         assert not (current_app is None)
         assert app.config['SQLALCHEMY_DATABASE_URI'] == \
@@ -20,12 +18,10 @@ class TestDevelopmentConfig(object):
 
 
 class TestTestingConfig(object):
-    def create_app(self):
-        app.config.from_object('api.config.TestingConfig')
-        return app
 
     def test_app_is_testing(self):
-        self.create_app()
+        app = create_app()
+        app.config.from_object('api.config.TestingConfig')
         assert app.config['SECRET_KEY'] == 'my_precious'
         assert app.config['TESTING'] is not None
         assert not app.config['PRESERVE_CONTEXT_ON_EXCEPTION']
@@ -34,11 +30,9 @@ class TestTestingConfig(object):
 
 
 class TestProductionConfig(object):
-    def create_app(self):
-        app.config.from_object('api.config.ProductionConfig')
-        return app
 
     def test_app_is_production(self):
-        self.create_app()
+        app = create_app()
+        app.config.from_object('api.config.ProductionConfig')
         assert app.config['SECRET_KEY'] == 'my_precious'
         assert not app.config['TESTING']
