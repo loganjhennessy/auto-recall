@@ -7,7 +7,8 @@ from api import create_app, db
 def client_fixture():
     app = create_app()
     app.config.from_object('api.config.TestingConfig')
-    return app.test_client()
+    client = app.test_client()
+    yield client
 
 
 @pytest.fixture()
