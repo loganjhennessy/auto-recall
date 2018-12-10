@@ -15,6 +15,6 @@ def client_fixture():
 def database_fixture():
     db.create_all()
     db.session.commit()
-    yield
+    yield db
     db.session.remove()
     db.drop_all()
