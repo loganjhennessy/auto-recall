@@ -1,5 +1,22 @@
 # Notes
 
+## 2018-12-10
+
+Got through Chapter 9. Tomorrow is deployment (Chapter 10). This is where it
+gets interesting. I figure I will want to adapt the instructions for GCP
+instead of AWS.
+
+## 2018-12-07
+
+Another issue with the tutorial I ran into today.
+
+1. The test case `test_add_user_invalid_json_keys` does not pass
+unless you add `username=username` to the filter on the query in the
+`GET /users` route.
+
+I'm now up to the *Get single user* section of the RESTful routes
+chapter.
+
 ## 2018-12-06
 
 A couple issues with the Flask-React tutorial.
