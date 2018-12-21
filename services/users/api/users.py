@@ -1,12 +1,20 @@
 # services/users/project/api/users.py
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 from sqlalchemy import exc
 
 from api.models import User
 from api import db
 
 
-users_blueprint = Blueprint('users', __name__)
+users_blueprint = Blueprint(
+    'users', __name__, template_folder='./templates'
+)
+
+
+@users_blueprint.route('/', methods=['GET'])
+def index():
+    users = User.query.all()
+    return render_template('index.html', users=users)
 
 
 @users_blueprint.route('/users', methods=['POST'])
