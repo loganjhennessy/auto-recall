@@ -2,13 +2,18 @@
 from flask.cli import FlaskGroup
 
 import pytest
-import unittest
 
 from api import create_app, db
 from api.models import User
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
+
+
+@cli.command()
+def cov():
+    """Runs the unit tests with coverage"""
+    return pytest.main(['api/tests', '--cov', 'api'])
 
 
 @cli.command()

@@ -1,5 +1,5 @@
 # services/users/project/__init__.py
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,8 +10,9 @@ db = SQLAlchemy()
 
 
 def create_app(script_info=None):
+    """Create app function"""
 
-    #instantiate the app
+    # instantiate the app
     app = Flask(__name__)
 
     # enable CORS

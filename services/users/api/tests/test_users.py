@@ -52,7 +52,7 @@ class TestUserService(object):
         assert 'fail', data['status']
 
     def test_add_user_invalid_json_keys(self, client):
-        """Ensure error is thrown if JSON object doesn't have a username key."""
+        """Ensure error is thrown if JSON object doesn't have a username key"""
         response = client.post(
             '/users',
             data=json.dumps({'email': 'loganjhennessy@gmail.com'}),
