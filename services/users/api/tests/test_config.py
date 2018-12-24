@@ -14,6 +14,7 @@ class TestDevelopmentConfig(object):
         assert not (current_app is None)
         assert app.config['SQLALCHEMY_DATABASE_URI'] == \
             os.environ.get('DATABASE_URL')
+        assert app.config['DEBUG_TB_ENABLED'] is True
 
 
 class TestTestingConfig(object):
@@ -26,6 +27,7 @@ class TestTestingConfig(object):
         assert not app.config['PRESERVE_CONTEXT_ON_EXCEPTION']
         assert app.config['SQLALCHEMY_DATABASE_URI'] == \
             os.environ.get('DATABASE_TEST_URL')
+        assert app.config['DEBUG_TB_ENABLED'] is False
 
 
 class TestProductionConfig(object):
@@ -35,3 +37,4 @@ class TestProductionConfig(object):
         app.config.from_object('api.config.ProductionConfig')
         assert app.config['SECRET_KEY'] == 'my_precious'
         assert not app.config['TESTING']
+        assert app.config['DEBUG_TB_ENABLED'] is False
