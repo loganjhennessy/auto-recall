@@ -1,6 +1,6 @@
 # Auto Recall
 
-[![Build Status](https://travis-ci.org/loganjhennessy/auto-recall.svg?branch=master)](https://travis-ci.org/loganjhennessy/auto-recall)
+[![Build Status](https://travis-ci.com/loganjhennessy/auto-recall.svg?branch=master)](https://travis-ci.com/loganjhennessy/auto-recall)
 
 An auto-associative note-taking application.
 
