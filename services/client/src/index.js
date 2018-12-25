@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import UsersList from './components/UsersList';
 
 class App extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
+    this.state = {
+      users: []
+    };
   };
   componentDidMount() {
     this.getUsers()
@@ -22,8 +26,9 @@ class App extends Component {
           <div className="columns">
             <div className="column is-one-third">
               <br/>
-              <h1 className="title is-1 is-1">All Users</h1>
+              <h1 className="title is-1">All Users</h1>
               <hr/><br/>
+              <UsersList users={this.state.users}/>
             </div>
           </div>
         </div>
