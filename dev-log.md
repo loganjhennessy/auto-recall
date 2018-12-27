@@ -1,5 +1,18 @@
 # Notes
 
+## 2018-12-27
+
+Successful day of getting through Part 2. Part 2 seemed like a lot of administrivia-type stuff and general piping to get the project off the ground. Part 3 is looking quite encouraging and interesting.
+
+Had a bit of a epiphany today when it really sunk in that the
+Users service is a wholly separate service from the Exercises
+service that is yet to be built. For my application, this will be
+relevant when I create a Notes service. The Notes service will be
+entirely separate from the Users service and the Notes service
+will use the Users service to ensure only authorized users are
+accessing the API. I'm looking forward to seeing how all this
+works and fits together.
+
 ## 2018-12-21
 
 New day. Fresh start. Starting with [Flask, SQLAlchemy and testing](https://spotofdata.com/flask-testing/).
